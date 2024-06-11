@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>API Meteo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>API Meteo</h1>
+    <p>Esta API fornece informações meteorológicas. Abaixo estão os detalhes dos endpoints disponíveis:</p>
+
+    <h2>Endpoints</h2>
+
+    <h3>1. Lista de Cidades</h3>
+    <p><strong>URL:</strong> <code>/api/cidades/</code></p>
+    <p><strong>Método:</strong> GET</p>
+    <p>Retorna a lista de cidades para as quais existem previsões meteorológicas.</p>
+    <pre>
+Exemplo de resposta:
+[
+    {
+        "idRegiao": 1,
+        "idAreaAviso": "AVR",
+        "idConcelho": 5,
+        "globalIdLocal": 1010500,
+        "latitude": "40.6413",
+        "idDistrito": 1,
+        "local": "Aveiro",
+        "longitude": "-8.6535"
+    },
+    ...
+]
+    </pre>
+
+    <h3>2. Previsão Meteorológica de Hoje para uma Cidade</h3>
+    <p><strong>URL:</strong> <code>/api/previsao-hoje/&lt;global_id&gt;/</code></p>
+    <p><strong>Método:</strong> GET</p>
+    <p>Retorna a previsão meteorológica de hoje para a cidade especificada pelo <code>global_id</code>.</p>
+    <pre>
+Parâmetros:
+- global_id: ID global da cidade
+
+Exemplo de resposta:
+{
+    "cidade": "Lisboa",
+    "temp_min": 16.2,
+    "temp_max": 23.4,
+    "data": "2024-06-10",
+    "descricao_tempo": "Céu parcialmente nublado",
+    "precipitacao": 0,
+    "icon_url": "https://api.ipma.pt/open-data/icons/3.svg"
+}
+    </pre>
+
+    <h3>3. Previsão Meteorológica para os Próximos 5 Dias para uma Cidade</h3>
+    <p><strong>URL:</strong> <code>/api/previsao-5-dias/&lt;global_id&gt;/</code></p>
+    <p><strong>Método:</strong> GET</p>
+    <p>Retorna a previsão meteorológica para os próximos 5 dias para a cidade especificada pelo <code>global_id</code>.</p>
+    <pre>
+Parâmetros:
+- global_id: ID global da cidade
+
+Exemplo de resposta:
+[
+    {
+        "cidade": "Lisboa",
+        "temp_min": 16.2,
+        "temp_max": 23.4,
+        "data": "2024-06-10",
+        "descricao_tempo": "Céu parcialmente nublado",
+        "precipitacao": 0,
+        "icon_url": "https://api.ipma.pt/open-data/icons/3.svg"
+    },
+    ...
+]
+    </pre>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Previsão Meteorológica</title>
+</head>
+<body>
+    <h1>Selecione uma cidade</h1>
+    <form method="get" action="{% url 'meteo:previsao_5_dias' %}">
+        <select name="cidade">
+            {% for cidade in cidades %}
+                <option value="{{ cidade.globalIdLocal }}">{{ cidade.local }}</option>
+            {% endfor %}
+        </select>
+        <input type="hidden" name="cidade_nome" value="{{ cidade.local }}">
+        <button type="submit">Ver previsão</button>
+    </form>
+</body>
+</html>

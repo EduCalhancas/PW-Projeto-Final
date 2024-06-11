@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+        <nav>
+            <a href="{% url 'meteo:index' %}"><button>Homepage</button></a>
+        </nav>
+    <title>Previsão Meteorológica para {{ cidade }}</title>
+    <style>
+        body {
+            background-color: #f4c542;
+            color: #333;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .weather-container {
+            background: #ffdb6d;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        .weather-day {
+            margin-bottom: 20px;
+        }
+        .weather-day img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="weather-container">
+        <h1>Previsão para {{ cidade }}</h1>
+        {% for previsao in previsoes %}
+            <div class="weather-day">
+                <h2>{{ previsao.forecastDate }}</h2>
+                <p>Min: {{ previsao.tMin }}ºC, Max: {{ previsao.tMax }}ºC</p>
+                <p>{{ previsao.descricao_tempo }}</p>
+                <p>Vento: {{ previsao.descricao_vento }}, {{ previsao.predWindDir }}</p>
+                {% load static %}
+                <img src="{% static previsao.icon_path %}" alt="Ícone do tempo">
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

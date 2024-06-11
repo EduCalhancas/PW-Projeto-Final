@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Festivais</title>
+</head>
+<body>
+    <h1>Festivais</h1>
+    {% for localizacao in localizacoes %}
+        <h2>{{ localizacao.nome }}</h2>
+        {% for festival in localizacao.festival_set.all %}
+            <p>
+                - <a href="{% url 'festivais:festival' festival.id %}">{{ festival.nome }}</a>,
+                Bandas:
+                {% for banda in festival.bandas.all %}
+                    {{ banda.nome }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+                <p>
+                {{ festival.ano }}
+                </p>
+            </p>
+        {% endfor %}
+    {% endfor %}
+</body>
+</html>

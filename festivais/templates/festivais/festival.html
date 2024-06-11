@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ festival.nome }}</title>
+</head>
+<body>
+    <h1>{{ festival.nome }}</h1>
+    <h2>Localização: {{ festival.localizacao.nome }}</h2>
+    <h3>Bandas:</h3>
+    <ul>
+        {% for banda in festival.bandas.all %}
+            <li>{{ banda.nome }}</li>
+        {% endfor %}
+    </ul>
+    {% if festival.cartaz %}
+        <h3>Cartaz do Festival:</h3>
+        <img src='{{ festival.cartaz.url}}' width="150px">
+    {% else %}
+        <p>Nenhum cartaz disponível.</p>
+    {% endif %}
+    <p>
+    <nav>
+      <a href="{% url 'festivais:index' %}">Lista de Festivais</a>
+    </nav>
+    </p>
+</body>
+</html>

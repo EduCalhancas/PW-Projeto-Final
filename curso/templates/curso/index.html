@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=3.0">
+    <title>App Curso</title>
+    <style>
+        body {
+            background: #e0f7e9;
+            color: #2f4f4f;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #2e8b57;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+        .menu {
+            display: flex;
+            gap: 1em;
+            justify-content: center;
+            background: #2e8b57;
+            padding: 1em 0;
+        }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 0.5em 1em;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 9px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .menu a:hover {
+            background: #3cb371;
+            transform: scale(1.05);
+        }
+        .menu a i {
+            margin-right: 0.5em;
+        }
+        main {
+            padding: 2em;
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        main h2 {
+            color: #2e8b57;
+        }
+        footer {
+            background: #2e8b57;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            margin: 0.5em 0;
+        }
+        ul li a {
+            color: #2e8b57;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        ul li a:hover {
+            color: #3cb371;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Informática de Gestão</h1>
+        <nav>
+            <div class="menu">
+                <a href="{% url 'portfolio:landing_page' %}"><i class="fas fa-home"></i><button>Home</button></a>
+                <a href="/login/"><i class="fas fa-sign-in-alt"></i><button>Login</button></a>
+                <a href="{% url 'curso:nova_disciplina' %}"><i class="fas fa-plus"></i><button>Inserir Nova Disciplina</button></a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Construindo o Futuro da Web</h2>
+        <p>Neste curso, exploraremos diversas tecnologias essenciais para o desenvolvimento web moderno:</p>
+        <ul>
+            <li><strong>Python e Django:</strong> Utilizados para construir aplicações web robustas e escaláveis, para perfecionistas com prazos.</li>
+            <li><strong>HTML, CSS e JavaScript:</strong> Essenciais para criar a estrutura, estilo e interatividade das páginas web.</li>
+        </ul>
+        <p>Vamos mergulhar a fundo nestas tecnologias e aprender a criar experiências incríveis na web!</p>
+    </main>
+
+    <main>
+        <h1>Lista de Disciplinas</h1>
+        <ul>
+            {% for disciplina in disciplinas %}
+                <li>
+                    <a href="{% url 'curso:disciplina' curricularUnitCode=disciplina.curricularUnitCode %}">{{disciplina.nome}}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Programação Web, Universidade Lusófona - Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

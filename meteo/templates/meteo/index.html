@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+        <header>
+        <nav>
+            <a href="{% url 'meteo:previsao' %}"><button>Escolher cidade para ver meteorologia dos próximos 5 dias </button></a>
+        </nav>
+    </header>
+    <title>Previsão Meteorológica para Lisboa</title>
+    {% load static %}
+    <style>
+        body {
+            background-color: #f4c542; /* Cor de fundo amarela */
+            color: #333; /* Cor do texto */
+            font-family: Arial, sans-serif; /* Fonte do texto */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .weather-container {
+            background: #ffdb6d;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 400px;
+        }
+        .weather-container img {
+            margin-top: 10px;
+        }
+        .weather-container h1 {
+            font-size: 2em;
+            margin-bottom: 0.5em;
+        }
+        .weather-container p {
+            margin: 0.3em 0;
+        }
+        .source {
+            margin-top: 1em;
+            font-size: 0.8em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="weather-container">
+        <h1>{{ cidade }}</h1>
+        <p>{{ data }}</p>
+        <p>min: {{ temp_min }}ºC, max: {{ temp_max }}ºC</p>
+        <p>{{ descricao_tempo }}</p>
+        <p>Vento: {{ descricao_vento }}, {{ pred_wind_dir }}</p>
+        <img src="{% static icon_path %}" alt="Ícone do tempo">
+        <div class="source">Fonte: IPMA API</div>
+    </div>
+</body>
+</html>

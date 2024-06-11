@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ disciplina.nome }}</title>
+    <style>
+        body {
+            background: #e0f7e9;
+            color: #2f4f4f;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background: #2e8b57;
+            padding: 1em;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 0.5em 1em;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 9px;
+            transition: background 0.3s, transform 0.3s;
+            display: inline-block;
+            margin: 0 0.5em;
+        }
+        nav a:hover {
+            background: #3cb371;
+            transform: scale(1.05);
+        }
+        nav button {
+            background: #3cb371;
+            color: white;
+            border: none;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+        nav button:hover {
+            background: #2e8b57;
+            transform: scale(1.05);
+        }
+        main {
+            padding: 2em;
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 2em;
+        }
+        h1 {
+            color: #2e8b57;
+        }
+        footer {
+            background: #2e8b57;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'curso:index' %}"><button>Curso</button></a>
+        <a href="{% url 'curso:edita_disciplina' disciplina.curricularUnitCode %}"><button>Editar informação da Disciplina</button></a>
+        <a href="{% url 'curso:apaga_disciplina' disciplina.curricularUnitCode %}"><button>Apagar Disciplina</button></a>
+    </nav>
+    <main>
+        <h1>{{ disciplina.nome }}</h1>
+        <p><strong>Ano:</strong> {{ disciplina.ano }}</p>
+        <p><strong>Semestre:</strong> {{ disciplina.semestre }}</p>
+        <p><strong>ECTS:</strong> {{ disciplina.ects }}</p>
+        <p><strong>Conteúdos Programáticos:</strong> {{ disciplina.conteudos_programaticos }}</p>
+        <p><strong>Projetos:</strong> {% for projeto in disciplina.projetos.all %}{{ projeto.nome }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+        <p><strong>Linguagens de Programação:</strong> {% for linguagem in disciplina.linguagens.all %}{{ linguagem.nome }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+    </main>
+    <footer>
+        <p>&copy; 2024 Programação Web, Universidade Lusófona - Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

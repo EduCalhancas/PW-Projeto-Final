@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Criar Nova Disciplina</title>
+    <style>
+        body {
+            background: #e0f7da;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #2e7d32;
+        }
+        header {
+            background-color: #388e3c;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        header a button {
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        header a button:hover {
+            background-color: #1b5e20;
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+        footer {
+            background-color: #388e3c;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .errorlist {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Criar Nova Disciplina</h1>
+        {% if request.user.is_authenticated %}
+            Username: {{ request.user.username }}
+            <a href="{% url 'logout_curso' %}"><button>Logout</button></a>
+        {% else %}
+            <a href="{% url 'login_curso' %}"><button>Login</button></a>
+        {% endif %}
+        <p></p>
+        <a href="{% url 'curso:index' %}"><button>Homepage</button></a>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>Universidade Lusófona</p>
+    </footer>
+</body>
+</html>
