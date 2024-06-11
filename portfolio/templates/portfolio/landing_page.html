@@ -75,14 +75,9 @@
     </div>
     <div class="menu">
         <a href="{% url 'portfolio:landing_page' %}"><i class="fas fa-home"></i>Home</a>
-        <a href="{% url 'meteo:index' %}"><i class="fas fa-cloud-sun"></i>Meteo</a>
+        <a href="{% url 'bandas:index' %}"><i class="fas fa-link"></i>Bandas</a>
         <a href="{% url 'curso:index' %}"><i class="fas fa-link"></i>Curso</a>
-        {% if request.user.is_authenticated %}
-            Username: {{ request.user.username }}
-            <a href="{% url 'autenticacao:logout_curso' %}"><i class="fas fa-sign-in-alt"><button>Logout</button></a>
-        {% else %}
-            <a href="{% url 'autenticacao:login_curso' %}"><i class="fas fa-sign-in-alt"><button>Login</button></a>
-        {% endif %}
+        <a href="{% url 'meteo:index' %}"><i class="fas fa-cloud-sun"></i>Meteo</a>
     </div>
     <div class="weather">
         {% if weather_data %}

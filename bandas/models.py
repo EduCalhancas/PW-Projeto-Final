@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Banda(models.Model):
+    idbanda = models.IntegerField(default=1)
     nome = models.CharField(max_length=100)
     membros = models.TextField()
     descricao = models.TextField()
